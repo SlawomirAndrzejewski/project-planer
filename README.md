@@ -1,5 +1,9 @@
 # project-planer
 
+It's a project from udemy course "Build Web Apps with Vue JS 3 & Firebase".
+
+It uses json-server to run your json files locally.
+
 ## Project setup
 ```
 npm install
