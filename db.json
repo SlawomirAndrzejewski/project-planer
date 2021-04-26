@@ -1,0 +1,10 @@
+{
+  "projects": [
+    {
+      "id": 2,
+      "title": "Send an email",
+      "details": "lorem ipsum",
+      "complete": true
+    }
+  ]
+}
