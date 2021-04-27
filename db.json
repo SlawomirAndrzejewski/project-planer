@@ -2,9 +2,15 @@
   "projects": [
     {
       "id": 2,
-      "title": "Send an email",
-      "details": "lorem ipsum",
+      "title": "Send emails",
+      "details": "lorem ipsum ipsum ii",
       "complete": true
+    },
+    {
+      "title": "zxc",
+      "details": "zxc",
+      "complete": false,
+      "id": 3
     }
   ]
 }

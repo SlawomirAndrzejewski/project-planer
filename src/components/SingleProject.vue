@@ -1,11 +1,13 @@
 <template>
-  <div class="project">
+  <div class="project" :class="{ complete: project.complete }">
     <div class="actions">
       <h3 @click="visible = !visible">{{ project.title }}</h3>
       <div class="icons">
-        <span class="material-icons">edit</span>
+        <router-link :to="{ name: 'EditProject', params: { id: project.id } }">
+          <span class="material-icons">edit</span>
+        </router-link>
         <span class="material-icons" @click="deleteProject">delete</span>
-        <span class="material-icons">done</span>
+        <span class="material-icons tick" @click="toggleComplete">done</span>
       </div>
     </div>
     <div class="details" v-if="visible">
@@ -21,7 +23,7 @@ export default {
   data() {
     return {
       visible: false,
-      uri: 'http://localhost:3000/projects/' + this.project.id
+      uri: "http://localhost:3000/projects/" + this.project.id,
     };
   },
 
@@ -30,6 +32,16 @@ export default {
       fetch(this.uri, { method: "DELETE" })
         .then(() => this.$emit("delete", this.project.id))
         .catch((err) => console.log(err));
+    },
+
+    toggleComplete() {
+      fetch(this.uri, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ complete: !this.project.complete }),
+      }).then(() => {
+        this.$emit('complete', this.project.id)
+      })
     },
   },
 };
@@ -45,8 +57,20 @@ export default {
   border-left: 4px solid #e90074;
 }
 
+.project.complete {
+  border-left: 4px solid #00ce89;
+}
+
+.project.complete .tick {
+  color: #00ce89;
+}
+
 h3 {
   cursor: pointer;
+}
+
+p {
+  font-size: 12px;
 }
 
 .actions {
